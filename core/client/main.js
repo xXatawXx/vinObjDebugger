@@ -234,6 +234,7 @@ const saveObjectDataTxtFile = () => {
     sortedData.forEach(value => {
         values = [value.xPos, value.yPos, value.zPos, value.xRot, value.yRot, value.zRot]
     });
+    console.log(`Values saved to a text document where the resource is downloaded: ${values}`)
     emitNet('saveObjectDataToFile', values)
 };
 
