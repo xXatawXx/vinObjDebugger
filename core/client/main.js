@@ -216,9 +216,9 @@ const resetValueStates = () => {
 
 const clearObjects = () => {
     const [pedX, pedY, pedZ] = GetEntityCoords((ObjectData.playerPed()))
-    const ballObject = GetClosestObjectOfType(pedX, pedY, pedZ, 1000.0, GetHashKey(ObjectData.objectToDebug), false, false);
+    const debugObject = GetClosestObjectOfType(pedX, pedY, pedZ, 1000.0, GetHashKey(ObjectData.objectToDebug), false, false);
     for (const [k, v] of Object.entries(GetGamePool('CObject'))) {
-        if (IsEntityAttachedToEntity(ObjectData.playerPed(), v) || DoesEntityExist(ballObject)) {
+        if (IsEntityAttachedToEntity(ObjectData.playerPed(), v) || DoesEntityExist(debugObject)) {
             SetEntityAsMissionEntity(v, true, true);
             DeleteObject(v);
             DeleteEntity(v);
