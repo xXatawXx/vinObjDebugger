@@ -227,11 +227,21 @@ const clearObjects = () => {
     }
 };
 
+const saveObjectDataTxtFile = () => {
+    let values = [];
+    const sortedData = ObjectData.CurrentMovementData.sort((a, b) => a.xPos - b.xPos);
+
+    sortedData.forEach(value => {
+        values = [value.xPos, value.yPos, value.zPos, value.xRot, value.yRot, value.zRot]
+    });
+    emitNet('saveObjectDataToFile', values)
+};
+
 RegisterCommand('debugentity', (source,args,user) => {
     ObjectData.DebugMode.value = !ObjectData.DebugMode.value;
     if (DoesEntityExist(ObjectData.ObjectId.value) && !ObjectData.DebugMode.value) {
-        emitNet('saveObjectDataToFile', ObjectData.CurrentMovementData)
         console.log("Object Deleted")
+        saveObjectDataTxtFile();
         resetValueStates();
         clearObjects();
     } else {
