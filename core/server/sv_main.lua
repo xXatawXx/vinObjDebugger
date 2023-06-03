@@ -9,16 +9,24 @@ end)
 
 saveObjData = function(objectData)
     local saveToFileDataText = ""
+    local newDataInserted = {}
     
-    for i = 1, #objectData do
-        local newDataInserted = {}
+    local newTable = newArrayLoop(objectData)
 
-        for _, val in pairs(objectData[i]) do
-            newDataInserted[#newDataInserted + 1] = val
-        end
-
-        saveToFileDataText = "Date Created: ".. os.date("!%Y-%m-%dT%H:%M:%SZ\n") .. json.encode(newDataInserted) .. "\n\n"
+    for i, value in ipairs(objectData) do
+        print(value)
+        print(json.encode(newTable))
+        newDataInserted = newTable
     end
 
+    saveToFileDataText = "Date Created: ".. os.date("!%Y-%m-%dT%H:%M:%SZ\n") .. json.encode(newDataInserted) .. "\n\n"
     return saveToFileDataText
+end
+
+newArrayLoop = function(tbl)
+    local newTableInserted = {}
+    for i, value in ipairs(tbl) do
+        newTableInserted[i] = value
+    end
+    return newTableInserted
 end
