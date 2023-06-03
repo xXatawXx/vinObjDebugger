@@ -1,7 +1,7 @@
 const ObjectData = {
     currentTickThread : 0,
     objectTickThread : 0,
-    objectToDebug : "p_ld_am_ball_01",
+    objectToDebug : Config.ObjectName,
     DebugMode: { text: "Debug Mode", value: false, sX : 0.70, sY : 0.30},
     ObjectId:  {text: "Object ID", value: 0, sX : 0.70, sY: 0.325},
     ObjectHash : {text: "Object Hash", value: 0, sX : 0.70, sY: 0.35},
@@ -83,7 +83,7 @@ const startObjectDebugThread = () => {
                     ObjectData.drawTxt(positionDisplay.sX, positionDisplay.sY, `~w~${positionDisplay.text}: ~s~${positionDisplay.storedVal}`)
                 });
 
-                ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), 28422, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal)
+                ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), Config.PedBoneIndex, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal)
         });
     }
 };
