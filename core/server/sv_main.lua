@@ -14,7 +14,7 @@ saveObjData = function(objectData)
     local newTable = newArrayLoop(objectData)
     newDataInserted = newTable
 
-    saveToFileDataText = "Date Created: ".. os.date("!%Y-%m-%dT%H:%M:%SZ\n") .. json.encode(newDataInserted) .. "\n\n"
+    saveToFileDataText = "Date Created: ".. os.date("!%Y-%m-%dT%H:%M:%SZ\n") .. "Values saved: " .. json.encode(newDataInserted) .. "\n\n"
     return saveToFileDataText
 end
 
