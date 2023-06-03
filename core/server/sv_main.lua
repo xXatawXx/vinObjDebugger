@@ -14,8 +14,6 @@ saveObjData = function(objectData)
     local newTable = newArrayLoop(objectData)
 
     for i, value in ipairs(objectData) do
-        print(value)
-        print(json.encode(newTable))
         newDataInserted = newTable
     end
 
