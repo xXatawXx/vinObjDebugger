@@ -32,9 +32,9 @@ const ObjectData = {
         AttachEntityToEntity(entity, ped, GetPedBoneIndex(ped, boneIndex), xPos, yPos, zPos, xRot, yRot, zRot, false, true, true, false, 0.0, false);
     },
     spawnObjectForDebugging : (objectName) => {
-        ObjectData.ObjectHash.value = GetHashKey(objectName)
-        const [pedX, pedY, pedZ] = GetEntityCoords((ObjectData.playerPed()))
-        const [fX, fY, fZ] = GetEntityForwardVector(ObjectData.playerPed())
+        ObjectData.ObjectHash.value = GetHashKey(objectName);
+        const [pedX, pedY, pedZ] = GetEntityCoords((ObjectData.playerPed()));
+        const [fX, fY, fZ] = GetEntityForwardVector(ObjectData.playerPed());
         RequestModel(ObjectData.ObjectHash.value);
         if(!HasModelLoaded(ObjectData.ObjectHash.value)) return;
         ObjectData.ObjectId.value = CreateObject(ObjectData.ObjectHash.value, pedX + fX, pedY + fY, pedZ + fZ + 0.5, true, true, true);
