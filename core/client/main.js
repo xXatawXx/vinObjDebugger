@@ -80,10 +80,10 @@ const startObjectDebugThread = () => {
                 // Display the values being edited.
                 const values = ObjectData.CurrentMovementType.value ? (ObjectData.CurrentMovementType.value === "pos" ? objectValues.slice(11, 14) : objectValues.slice(14, 17)) : [];
                 values.forEach(positionDisplay => {
-                    ObjectData.drawTxt(positionDisplay.sX, positionDisplay.sY, `~w~${positionDisplay.text}: ~s~${positionDisplay.storedVal}`)
+                    ObjectData.drawTxt(positionDisplay.sX, positionDisplay.sY, `~w~${positionDisplay.text}: ~s~${positionDisplay.storedVal}`);
                 });
 
-                ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), Config.PedBoneIndex, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal)
+                ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), Config.PedBoneIndex, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal);
         });
     }
 };
