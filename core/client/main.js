@@ -57,33 +57,34 @@ const ObjectData = {
 const startObjectDebugThread = () => {
     if (ObjectData.DebugMode.value) {
         ObjectData.objectTickThread = setTick(() => {
-                const objectValues = Object.values(ObjectData);
-                const objectDataKeys = Object.keys(ObjectData);
-                // Draw all the necessary data.
-                objectDataKeys.forEach(objectDataKey => {
-                    const objectDataElement = ObjectData[objectDataKey];
-                    if (objectDataElement.value !== undefined) {
-                        ObjectData.drawTxt(objectDataElement.sX, objectDataElement.sY, `~w~${objectDataElement.text}: ~s~${objectDataElement.value}`);
-                    }
-                });
-
-                if (IsControlJustReleased(0, 174) && !ObjectData.inActiveMovementState.value && ObjectData.CurrentMovementType.value !== "pos") {
-                    ObjectData.CurrentMovementType.value = "pos";
-                    movementPosition();
-                } else if (IsControlJustReleased(0, 175) && !ObjectData.inActiveMovementState.value && ObjectData.CurrentMovementType.value !== "rot") {
-                    ObjectData.CurrentMovementType.value = "rot";
-                    movementRotation();
-                } else if (IsControlJustReleased(0, 176) && ObjectData.CurrentMovementTypeValue.value) {
-                    ObjectData.inActiveMovementState.value = !ObjectData.inActiveMovementState.value;
+            const objectValues = Object.values(ObjectData);
+            const objectDataKeys = Object.keys(ObjectData);
+            // Draw all the necessary data.
+            objectDataKeys.forEach(objectDataKey => {
+                const objectDataElement = ObjectData[objectDataKey];
+                if (objectDataElement.value !== undefined) {
+                    ObjectData.drawTxt(objectDataElement.sX, objectDataElement.sY, `~w~${objectDataElement.text}: ~s~${objectDataElement.value}`);
                 }
-
-                // Display the values being edited.
-                const values = ObjectData.CurrentMovementType.value ? (ObjectData.CurrentMovementType.value === "pos" ? objectValues.slice(11, 14) : objectValues.slice(14, 17)) : [];
-                values.forEach(positionDisplay => {
-                    ObjectData.drawTxt(positionDisplay.sX, positionDisplay.sY, `~w~${positionDisplay.text}: ~s~${positionDisplay.storedVal}`);
-                });
-
-                ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), Config.PedBoneIndex, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal);
+            });
+            
+            if (IsControlJustReleased(0, 174) && !ObjectData.inActiveMovementState.value && ObjectData.CurrentMovementType.value !== "pos") {
+                ObjectData.CurrentMovementType.value = "pos";
+                movementPosition();
+            } else if (IsControlJustReleased(0, 175) && !ObjectData.inActiveMovementState.value && ObjectData.CurrentMovementType.value !== "rot") {
+                ObjectData.CurrentMovementType.value = "rot";
+                movementRotation();
+            } else if (IsControlJustReleased(0, 176) && ObjectData.CurrentMovementTypeValue.value) {
+                ObjectData.inActiveMovementState.value = !ObjectData.inActiveMovementState.value;
+            }
+            
+            // Display the values being edited.
+            const values = ObjectData.CurrentMovementType.value ? (ObjectData.CurrentMovementType.value === "pos" ? objectValues.slice(11, 14) : objectValues.slice(14, 17)) : [];
+            
+            values.forEach(positionDisplay => {
+                ObjectData.drawTxt(positionDisplay.sX, positionDisplay.sY, `~w~${positionDisplay.text}: ~s~${positionDisplay.storedVal}`);
+            });
+            
+            ObjectData.AttachDebuggerEntity(ObjectData.ObjectId.value, ObjectData.playerPed(), Config.PedBoneIndex, ObjectData.storedMovementPositionVal1.storedVal, ObjectData.storedMovementPositionVal2.storedVal, ObjectData.storedMovementPositionVal3.storedVal, ObjectData.storedMovementRotationVal1.storedVal, ObjectData.storedMovementRotationVal2.storedVal, ObjectData.storedMovementRotationVal3.storedVal);
         });
     }
 };
@@ -107,30 +108,30 @@ const movementPosition = () => {
                         case "xPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 0.1;
                             ObjectData.storedMovementPositionVal1.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                         case "yPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 0.1;
                             ObjectData.storedMovementPositionVal2.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                         case "zPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 0.1;
                             ObjectData.storedMovementPositionVal3.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                     }
                 } else if (IsControlJustReleased(0, 175) && ObjectData.CurrentMovementTypeValue.value !== "" && ObjectData.inActiveMovementState.value) {
                     switch (ObjectData.CurrentMovementTypeValue.value) {
                         case "xPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 0.1;
                             ObjectData.storedMovementPositionVal1.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                         case "yPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 0.1;
                             ObjectData.storedMovementPositionVal2.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                         case "zPos":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 0.1;
                             ObjectData.storedMovementPositionVal3.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value].toFixed(1));
-                            break;
+                        break;
                     }
                 }
             } else {
@@ -159,30 +160,30 @@ const movementRotation = () => {
                         case "xRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 1.0;
                             ObjectData.storedMovementRotationVal1.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                         case "yRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 1.0;
                             ObjectData.storedMovementRotationVal2.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                         case "zRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] -= 1.0;
                             ObjectData.storedMovementRotationVal3.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                     }
                 } else if (IsControlPressed(0, 175) && ObjectData.CurrentMovementTypeValue.value !== "" && ObjectData.inActiveMovementState.value) {
                     switch (ObjectData.CurrentMovementTypeValue.value) {
                         case "xRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 1.0;
                             ObjectData.storedMovementRotationVal1.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                         case "yRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 1.0;
                             ObjectData.storedMovementRotationVal2.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                         case "zRot":
                             ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value] += 1.0;
                             ObjectData.storedMovementRotationVal3.storedVal = Number(ObjectData.CurrentMovementData[0][ObjectData.CurrentMovementTypeValue.value]);
-                            break;
+                        break;
                     }
                 }
             } else {
@@ -215,7 +216,7 @@ const resetValueStates = () => {
 };
 
 const clearObjects = () => {
-    const [pedX, pedY, pedZ] = GetEntityCoords((ObjectData.playerPed()))
+    const [pedX, pedY, pedZ] = GetEntityCoords((ObjectData.playerPed()));
     const debugObject = GetClosestObjectOfType(pedX, pedY, pedZ, 1000.0, GetHashKey(ObjectData.objectToDebug), false, false);
     for (const [k, v] of Object.entries(GetGamePool('CObject'))) {
         if (IsEntityAttachedToEntity(ObjectData.playerPed(), v) || DoesEntityExist(debugObject)) {
@@ -230,18 +231,19 @@ const clearObjects = () => {
 const saveObjectDataTxtFile = () => {
     let values = [];
     const sortedData = ObjectData.CurrentMovementData.sort((a, b) => a.xPos - b.xPos);
-
+    
     sortedData.forEach(value => {
         values = [value.xPos, value.yPos, value.zPos, value.xRot, value.yRot, value.zRot]
     });
-    console.log(`Values saved to a text document where the resource is downloaded: ${values}`)
-    emitNet('saveObjectDataToFile', values)
+    
+    console.log(`Values saved to a text document where the resource is downloaded: ${values}`);
+    emitNet('saveObjectDataToFile', values);
 };
 
 RegisterCommand('debugentity', (source,args,user) => {
     ObjectData.DebugMode.value = !ObjectData.DebugMode.value;
     if (DoesEntityExist(ObjectData.ObjectId.value) && !ObjectData.DebugMode.value) {
-        console.log("Object Deleted")
+        console.log("Object Deleted");
         saveObjectDataTxtFile();
         resetValueStates();
         clearObjects();
@@ -254,5 +256,5 @@ RegisterCommand('debugentity', (source,args,user) => {
 addEventListener("onClientResourceStart", (resourceName) => {
     if(GetCurrentResourceName() != resourceName) { return; }
     clearObjects();
-    console.log(`${resourceName} has been started and is deleting objects.`)
+    console.log(`${resourceName} has been started and is deleting objects.`);
 });
