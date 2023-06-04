@@ -138,7 +138,7 @@ const movementPosition = () => {
             }
         });
     }
-}
+};
 
 const movementRotation = () => {
     if (ObjectData.CurrentMovementType.value === "rot") {
