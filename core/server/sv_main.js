@@ -13,7 +13,7 @@ const saveObjData = (objectData) => {
     let newTable = newArrayLoop(objectData);
     newObjectDataInserted = Array.from(newTable);
     
-    saveToFileDataText = `Date Created: ${new Date().toISOString()}\nValues saved: ${JSON.stringify(newObjectDataInserted)}\n\n`;
+    saveToFileDataText = `Date Created: ${new Date().toISOString()}\nValues saved: ${JSON.stringify(newObjectDataInserted)} (Usage: [xPos, yPos, zPos, xRot, yRot, zRot])\n\n`;
     return saveToFileDataText;
 }
 
